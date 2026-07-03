@@ -40,6 +40,7 @@ Sara Agentic OS is an operating model for controlling AI-assisted project work t
 - GitHub issue / branch / PR discipline
 - assistant review verdicts
 - chat retirement and handoff protocols
+- optional repository-level instruction templates for AI-assisted tools
 
 The goal is not to make AI "fully autonomous". The goal is to make AI-assisted execution **less chaotic, less stale, less manual, and easier to verify**.
 
@@ -56,6 +57,7 @@ Sara is not:
 - a queue/service worker
 - an autonomous code merger
 - a blockchain/smart-contract system
+- a set of shipped agents
 - a replacement for product judgment
 - a guarantee that AI output is correct
 
@@ -115,7 +117,7 @@ Merge / closeout / state update
 │   ├── WORK_PACKET.template.md
 │   ├── EXECUTION_RESULT.template.md
 │   ├── CHAT_RETIREMENT.template.md
-│   └── AGENTS.template.md
+│   └── AGENTS.template.md        # optional instruction template, not shipped agents
 └── .github/
     ├── pull_request_template.md
     └── ISSUE_TEMPLATE/
@@ -133,11 +135,13 @@ Merge / closeout / state update
    docs/state/PROJECT_CURRENT_STATE.md
    ```
 
-2. Copy `templates/AGENTS.template.md` into your repo as:
+2. Optional: if you use Cursor, Codex, or similar AI-assisted execution tools, copy `templates/AGENTS.template.md` into your repo as:
 
    ```text
    AGENTS.md
    ```
+
+   This file is only an instruction template. It does not create agents, run agents, or add automation.
 
 3. Before each task, create a work packet from:
 
@@ -150,7 +154,7 @@ Merge / closeout / state update
    - Project Instructions
    - `docs/state/PROJECT_CURRENT_STATE.md`
    - the relevant work packet
-   - `AGENTS.md`
+   - `AGENTS.md`, if your project uses it
 
 5. Require Cursor/Codex to write a structured result using:
 
@@ -205,7 +209,7 @@ If you have a question, open a GitHub Issue using the **Question / Adoption Help
 
 If you want to improve the model, open an Issue first or submit a Pull Request with a clear explanation of the problem and proposed change.
 
-For professional help adapting this model to a real project workflow, open an Issue with context and mark it as an adoption/help request. Do not include secrets, credentials, private repository links, customer data, or confidential business information.
+For professional help adapting this model to a real project workflow, open an Issue with context and mark it as an adoption/help request. Keep examples general and sanitized.
 
 ---
 
