@@ -1,0 +1,39 @@
+name: Question / Adoption Help
+description: Ask a question about using Sara Agentic OS in your workflow
+title: "Question: "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your question. Please keep examples general and sanitized.
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What are you trying to use Sara for?
+      placeholder: "Example: I use ChatGPT, Cursor, and GitHub and want better task handoff."
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: What do you need help with?
+    validations:
+      required: true
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Current workflow
+      description: Which tools are involved?
+      placeholder: "ChatGPT, Cursor, Codex, GitHub, CI, PR review..."
+    validations:
+      required: false
+  - type: checkboxes
+    id: sanitization
+    attributes:
+      label: Sanitization check
+      options:
+        - label: I kept the example general and sanitized.
+          required: true
