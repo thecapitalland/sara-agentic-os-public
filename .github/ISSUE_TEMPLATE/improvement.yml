@@ -1,0 +1,48 @@
+name: Improvement Proposal
+description: Suggest a practical improvement to the Sara operating model
+title: "Improvement: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Propose changes that reduce workflow friction without turning Sara into a heavy platform.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What workflow problem does this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: What should change?
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope check
+      description: Why does this stay within the operating-model scope?
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks or tradeoffs
+      description: What could go wrong or become too complex?
+    validations:
+      required: false
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: This does not require a new runtime, service, dashboard, or uncontrolled automation.
+          required: true
+        - label: This preserves human gates.
+          required: true
+        - label: The example is general and sanitized.
+          required: true
