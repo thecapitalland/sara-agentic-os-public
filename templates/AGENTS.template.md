@@ -1,6 +1,10 @@
-# AGENTS.md
+# AGENTS.md Template
 
-This file defines execution rules for AI agents working in this repository.
+This is an optional instruction template for AI-assisted execution tools such as Cursor, Codex, or similar coding assistants.
+
+It does not define real agents, shipped agents, a runtime, a bot, or an automation service.
+
+Use it only if your project has AI tools that need clear repository-level execution rules.
 
 ---
 
@@ -25,7 +29,7 @@ You must:
 - preserve the Intent Lock
 - respect Forbidden Downgrades
 - stop if the state file conflicts with the packet
-- stop if the task requires secrets, credentials, or unapproved access
+- stop if the task requires private access that was not approved
 - stop if validation cannot be performed and no safe fallback exists
 
 You must not:
