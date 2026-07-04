@@ -38,6 +38,7 @@ Sara Agentic OS is an operating model for controlling AI-assisted project work t
 - human gates
 - structured Cursor/Codex result files
 - GitHub issue / branch / PR discipline
+- issue-to-agent conveyor rules
 - assistant review verdicts
 - chat retirement and handoff protocols
 - optional repository-level instruction templates for AI-assisted tools
@@ -100,6 +101,22 @@ Merge / closeout / state update
 
 ---
 
+## Start here
+
+- [Operating Model v0](docs/OPERATING_MODEL_V0.md)
+- [Adoption Guide](docs/ADOPTION_GUIDE.md)
+- [Issue Agent Conveyor](docs/ISSUE_AGENT_CONVEYOR.md)
+- [Parallel Agents Guide](docs/PARALLEL_AGENTS.md)
+- [Failure Playbooks](docs/FAILURE_PLAYBOOKS.md)
+- [Operational Lessons](docs/OPERATIONAL_LESSONS.md)
+- [Glossary](docs/GLOSSARY.md)
+- [Roadmap](docs/ROADMAP.md)
+- [Presentation Narrative](docs/PRESENTATION.md)
+- [Collaboration Invitation](docs/COLLABORATION.md)
+- [Sanitized Case Study](docs/CASE_STUDY_SANITIZED.md)
+
+---
+
 ## Repository structure
 
 ```text
@@ -111,6 +128,14 @@ Merge / closeout / state update
 ├── docs/
 │   ├── OPERATING_MODEL_V0.md
 │   ├── ADOPTION_GUIDE.md
+│   ├── ISSUE_AGENT_CONVEYOR.md
+│   ├── PARALLEL_AGENTS.md
+│   ├── FAILURE_PLAYBOOKS.md
+│   ├── OPERATIONAL_LESSONS.md
+│   ├── GLOSSARY.md
+│   ├── ROADMAP.md
+│   ├── PRESENTATION.md
+│   ├── COLLABORATION.md
 │   └── CASE_STUDY_SANITIZED.md
 ├── templates/
 │   ├── PROJECT_CURRENT_STATE.template.md
@@ -122,7 +147,8 @@ Merge / closeout / state update
     ├── pull_request_template.md
     └── ISSUE_TEMPLATE/
         ├── question.yml
-        └── improvement.yml
+        ├── improvement.yml
+        └── adoption-help.yml
 ```
 
 ---
@@ -203,13 +229,33 @@ Sara is probably overkill if your project is small, single-session, or does not 
 
 ---
 
+## Collaboration
+
+Sara is early and practical.
+
+Useful help can come from many directions:
+
+- workflow critique
+- AI-assisted development experience
+- GitHub/Cursor/Codex patterns
+- issue and PR review discipline
+- examples and templates
+- case studies that can be shared safely
+- technical writing
+- product judgment
+- community feedback
+
+Read [Collaboration Invitation](docs/COLLABORATION.md) for suggested ways to help.
+
+---
+
 ## Questions and help
 
 If you have a question, open a GitHub Issue using the **Question / Adoption Help** template.
 
-If you want to improve the model, open an Issue first or submit a Pull Request with a clear explanation of the problem and proposed change.
+If you want help applying this model to a real project workflow, use the **Adoption Help** issue template and keep examples general and sanitized.
 
-For professional help adapting this model to a real project workflow, open an Issue with context and mark it as an adoption/help request. Keep examples general and sanitized.
+If you want to improve the model, open an Issue first or submit a Pull Request with a clear explanation of the problem and proposed change.
 
 ---
 
