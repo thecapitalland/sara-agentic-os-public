@@ -1,0 +1,69 @@
+name: Adoption Help
+
+description: Ask for help applying Sara Agentic OS to a real workflow
+
+title: "Adoption help: <short project/workflow description>"
+
+labels:
+  - adoption-help
+  - question
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to describe a real AI-assisted workflow problem. Please keep private project details sanitized.
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What kind of project or workflow are you trying to control?
+      placeholder: Founder-led product, small team, Cursor/GitHub workflow, long-running repo, etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: tools
+    attributes:
+      label: Tools involved
+      description: Which tools are part of the workflow?
+      placeholder: ChatGPT, Cursor, Codex, GitHub Issues, PRs, CI, Slack, Google Drive, etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: pain
+    attributes:
+      label: Current pain
+      description: What breaks, slows down, or becomes hard to verify?
+      placeholder: Long chats, copy/paste, vague done claims, stale context, PR review confusion, etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: source-of-truth
+    attributes:
+      label: Source of truth
+      description: Where does the current operational state live today?
+      placeholder: GitHub repo, docs folder, issue tracker, Drive doc, chat, none yet, etc.
+    validations:
+      required: false
+
+  - type: textarea
+    id: expected-help
+    attributes:
+      label: What kind of help do you want?
+      description: What should Sara help you clarify or structure?
+      placeholder: Project state, work packet, issue pattern, review verdict, handoff, failure playbook, etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints / risks
+      description: What should not be automated, exposed, or changed?
+      placeholder: No code auto-merge, no private data, no deployment changes, human gate required, etc.
+    validations:
+      required: false
