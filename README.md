@@ -114,6 +114,7 @@ Merge / closeout / state update
 - [Presentation Narrative](docs/PRESENTATION.md)
 - [Collaboration Invitation](docs/COLLABORATION.md)
 - [Sanitized Case Study](docs/CASE_STUDY_SANITIZED.md)
+- [Sample Project Walkthrough](examples/sample-project/README.md)
 
 ---
 
@@ -137,6 +138,8 @@ Merge / closeout / state update
 │   ├── PRESENTATION.md
 │   ├── COLLABORATION.md
 │   └── CASE_STUDY_SANITIZED.md
+├── examples/
+│   └── sample-project/
 ├── templates/
 │   ├── PROJECT_CURRENT_STATE.template.md
 │   ├── WORK_PACKET.template.md
