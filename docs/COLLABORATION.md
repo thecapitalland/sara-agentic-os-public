@@ -28,6 +28,16 @@ Useful collaboration can happen at many levels.
 - failure recovery patterns
 - label and status lifecycle design
 
+### Code and documentation
+
+- better templates
+- better work packet examples
+- better result file examples
+- better review verdict examples
+- clearer adoption walkthroughs
+- safer public case studies
+- sample project walkthroughs
+
 ### Real-world use cases
 
 - founder-led software projects
@@ -37,13 +47,17 @@ Useful collaboration can happen at many levels.
 - review-heavy workflows
 - projects with frequent handoffs
 
-### Templates and examples
+### Resources and sponsorship
 
-- better work packet examples
-- better result file examples
-- better review verdict examples
-- clearer adoption walkthroughs
-- safer public case studies
+Support can also include:
+
+- tooling credits
+- AI model/API credits
+- GitHub or development resources
+- infrastructure for experiments
+- funding for documentation and examples
+- funding for structured case studies
+- introductions to builders, reviewers, or teams with similar workflow problems
 
 ### Credibility and adoption
 
@@ -55,11 +69,23 @@ Useful collaboration can happen at many levels.
 
 ---
 
+## Mutual benefit
+
+The goal is not one-way support.
+
+The goal is to grow Sara while helping contributors improve their own AI-assisted execution workflows.
+
+If Sara becomes clearer, safer, and more practical, it should benefit both the project and the people using or improving it.
+
+---
+
 ## What Sara is not asking for
 
 Sara is not asking people to believe in full autonomy.
 
 It is not claiming to replace engineering judgment, product judgment, or code review.
+
+Support does not buy false claims, private project access by default, bypass of human gates, or code auto-merge approval.
 
 The best feedback is grounded, specific, and practical.
 
@@ -75,6 +101,7 @@ You can help by:
 4. reviewing the operating model
 5. trying the model on a small project and reporting friction
 6. submitting a pull request for docs or examples
+7. offering tooling, infrastructure, funding, introductions, or other resources that help the model mature
 
 ---
 
@@ -96,6 +123,10 @@ How do you handle it today?
 ## Suggested improvement
 
 What should Sara clarify, add, or change?
+
+## Support or resource angle
+
+Are you offering feedback, code, docs, examples, funding, tooling, introductions, or a real-world test case?
 
 ## Risk
 
