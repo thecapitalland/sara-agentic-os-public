@@ -113,6 +113,7 @@ Merge / closeout / state update
 - [Roadmap](docs/ROADMAP.md)
 - [Presentation Narrative](docs/PRESENTATION.md)
 - [Collaboration Invitation](docs/COLLABORATION.md)
+- [Support and Resources](docs/SUPPORT_AND_RESOURCES.md)
 - [Sanitized Case Study](docs/CASE_STUDY_SANITIZED.md)
 - [Sample Project Walkthrough](examples/sample-project/README.md)
 
@@ -137,6 +138,7 @@ Merge / closeout / state update
 │   ├── ROADMAP.md
 │   ├── PRESENTATION.md
 │   ├── COLLABORATION.md
+│   ├── SUPPORT_AND_RESOURCES.md
 │   └── CASE_STUDY_SANITIZED.md
 ├── examples/
 │   └── sample-project/
@@ -232,7 +234,7 @@ Sara is probably overkill if your project is small, single-session, or does not 
 
 ---
 
-## Collaboration
+## Collaboration and support
 
 Sara is early and practical.
 
@@ -244,11 +246,16 @@ Useful help can come from many directions:
 - issue and PR review discipline
 - examples and templates
 - case studies that can be shared safely
-- technical writing
-- product judgment
-- community feedback
+- code and documentation contributions
+- tooling, infrastructure, or model/API credits
+- financial support for documentation, examples, and structured case studies
+- introductions to builders, reviewers, teams, or communities facing similar workflow problems
+- product judgment and market feedback
+- community feedback and public review
 
-Read [Collaboration Invitation](docs/COLLABORATION.md) for suggested ways to help.
+The goal is mutual development: improving Sara while helping contributors improve their own AI-assisted execution workflows.
+
+Read [Collaboration Invitation](docs/COLLABORATION.md) and [Support and Resources](docs/SUPPORT_AND_RESOURCES.md) for suggested ways to help.
 
 ---
 
