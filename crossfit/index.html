@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#101214" />
+  <title>ثبت تمرین امروز</title>
+  <style>
+    :root {
+      --bg: #0f1113;
+      --card: #191c20;
+      --card-2: #22262b;
+      --text: #f6f7f8;
+      --muted: #aab0b7;
+      --line: #353a40;
+      --accent: #ffcf33;
+      --danger: #ff7a7a;
+      --success: #59d790;
+    }
+    * { box-sizing: border-box; }
+    html { background: var(--bg); }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 80% 0%, rgba(255,207,51,.12), transparent 32rem),
+        var(--bg);
+      font-family: Tahoma, Arial, sans-serif;
+      line-height: 1.55;
+    }
+    .shell { width: min(100%, 560px); margin: 0 auto; padding: 22px 16px 42px; }
+    .hero { padding: 18px 4px 20px; }
+    .eyebrow { margin: 0 0 8px; color: var(--accent); font-size: .84rem; font-weight: 700; letter-spacing: .02em; }
+    h1 { margin: 0; font-size: clamp(1.7rem, 7vw, 2.45rem); line-height: 1.2; }
+    .lead { margin: 10px 0 0; color: var(--muted); font-size: .96rem; }
+    .card {
+      background: rgba(25,28,32,.95);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.23);
+    }
+    .field { margin-bottom: 17px; }
+    label, legend { display: block; margin-bottom: 7px; font-size: .91rem; font-weight: 700; }
+    .optional { color: var(--muted); font-size: .75rem; font-weight: 400; }
+    input, select, textarea, button { font: inherit; }
+    input, select, textarea {
+      width: 100%;
+      color: var(--text);
+      background: var(--card-2);
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      padding: 13px 14px;
+      outline: none;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255,207,51,.12);
+    }
+    textarea { min-height: 92px; resize: vertical; }
+    select { appearance: none; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    fieldset { border: 0; padding: 0; margin: 0 0 17px; }
+    .chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .chip input { position: absolute; opacity: 0; pointer-events: none; }
+    .chip span {
+      display: block;
+      text-align: center;
+      padding: 11px 5px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--card-2);
+      color: var(--muted);
+      cursor: pointer;
+      user-select: none;
+    }
+    .chip input:checked + span {
+      color: #121212;
+      background: var(--accent);
+      border-color: var(--accent);
+      font-weight: 800;
+    }
+    .range-row { display: flex; align-items: center; gap: 12px; }
+    input[type="range"] { flex: 1; padding: 0; accent-color: var(--accent); }
+    .rpe-value {
+      width: 48px; height: 42px; display: grid; place-items: center;
+      border-radius: 12px; background: var(--accent); color: #111; font-weight: 900;
+    }
+    .hint { margin: 7px 1px 0; color: var(--muted); font-size: .76rem; }
+    .submit {
+      width: 100%; border: 0; border-radius: 14px; padding: 14px 16px;
+      color: #111; background: var(--accent); font-weight: 900; cursor: pointer;
+      transition: transform .08s, opacity .15s;
+    }
+    .submit:active { transform: translateY(1px); }
+    .submit[disabled] { opacity: .55; cursor: wait; }
+    .status { display: none; margin-top: 13px; padding: 12px 13px; border-radius: 12px; font-size: .86rem; }
+    .status.show { display: block; }
+    .status.success { color: var(--success); background: rgba(89,215,144,.1); border: 1px solid rgba(89,215,144,.3); }
+    .status.error { color: var(--danger); background: rgba(255,122,122,.1); border: 1px solid rgba(255,122,122,.3); }
+    .privacy { margin: 14px 3px 0; color: var(--muted); font-size: .73rem; text-align: center; }
+    .trap { position: absolute; left: -9999px; }
+    @media (max-width: 390px) {
+      .grid { grid-template-columns: 1fr; }
+      .chips { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <p class="eyebrow">CROSSFIT · DAILY LOG</p>
+      <h1>تمرین امروزت را ثبت کن</h1>
+      <p class="lead">کمتر از یک دقیقه؛ برای اینکه مربی روند پیشرفتت را دقیق‌تر ببیند.</p>
+    </header>
+
+    <section class="card">
+      <form id="workoutForm" novalidate>
+        <input type="hidden" name="_subject" value="ثبت جدید تمرین کراس‌فیت" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="نسخه_فرم" value="MVP-1" />
+        <input type="hidden" name="زمان_ارسال" id="submittedAt" />
+        <input type="text" name="_honey" class="trap" tabindex="-1" autocomplete="off" />
+
+        <div class="field">
+          <label for="name">نام و نام خانوادگی</label>
+          <input id="name" name="نام" type="text" autocomplete="name" maxlength="70" required placeholder="مثلاً محمد عقیق" />
+        </div>
+
+        <div class="grid">
+          <div class="field">
+            <label for="date">تاریخ تمرین</label>
+            <input id="date" name="تاریخ_تمرین" type="date" required />
+          </div>
+          <div class="field">
+            <label for="type">نوع جلسه</label>
+            <select id="type" name="نوع_جلسه" required>
+              <option value="">انتخاب کنید</option>
+              <option>WOD</option>
+              <option>قدرتی</option>
+              <option>تکنیک و مهارت</option>
+              <option>Open Gym</option>
+              <option>سایر</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="workout">نام WOD یا حرکت اصلی</label>
+          <input id="workout" name="تمرین_یا_حرکت" type="text" maxlength="120" required placeholder="مثلاً Fran یا Back Squat" />
+        </div>
+
+        <div class="field">
+          <label for="result">نتیجه</label>
+          <input id="result" name="نتیجه" type="text" maxlength="120" required placeholder="مثلاً ۱۲:۴۰، ۵ دور یا ۶۰ کیلو" />
+        </div>
+
+        <fieldset>
+          <legend>سطح اجرا</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="سطح_اجرا" value="Rx" required /><span>Rx</span></label>
+            <label class="chip"><input type="radio" name="سطح_اجرا" value="Scaled" /><span>Scaled</span></label>
+            <label class="chip"><input type="radio" name="سطح_اجرا" value="مبتدی / تکنیکی" /><span>مبتدی / تکنیکی</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="rpe">فشار تمرین از ۱ تا ۱۰</label>
+          <div class="range-row">
+            <input id="rpe" name="فشار_تمرین_RPE" type="range" min="1" max="10" value="7" />
+            <output id="rpeValue" class="rpe-value" for="rpe">۷</output>
+          </div>
+          <p class="hint">۱ خیلی سبک · ۱۰ حداکثر فشار</p>
+        </div>
+
+        <div class="field">
+          <label for="note">نکته برای مربی <span class="optional">(اختیاری)</span></label>
+          <textarea id="note" name="یادداشت_برای_مربی" maxlength="300" placeholder="مثلاً حرکت خاصی سخت بود یا دوست دارم روی مهارتی بیشتر کار کنم"></textarea>
+        </div>
+
+        <button id="submitButton" class="submit" type="submit">ثبت تمرین</button>
+        <div id="status" class="status" role="status" aria-live="polite"></div>
+      </form>
+      <p class="privacy">این فرم فقط برای پیگیری تمرین است و جایگزین ارزیابی یا توصیه پزشکی نیست.</p>
+    </section>
+  </main>
+
+  <script>
+    const endpoint = 'https://formsubmit.co/ajax/thecapitalland@gmail.com';
+    const form = document.getElementById('workoutForm');
+    const submitButton = document.getElementById('submitButton');
+    const statusBox = document.getElementById('status');
+    const rpe = document.getElementById('rpe');
+    const rpeValue = document.getElementById('rpeValue');
+    const dateInput = document.getElementById('date');
+    const submittedAt = document.getElementById('submittedAt');
+
+    const faDigits = value => String(value).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+    rpe.addEventListener('input', () => { rpeValue.textContent = faDigits(rpe.value); });
+
+    const today = new Date();
+    dateInput.value = [today.getFullYear(), String(today.getMonth() + 1).padStart(2, '0'), String(today.getDate()).padStart(2, '0')].join('-');
+
+    function showStatus(message, kind) {
+      statusBox.textContent = message;
+      statusBox.className = `status show ${kind}`;
+    }
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      statusBox.className = 'status';
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        showStatus('لطفاً همه موارد ضروری را کامل کن.', 'error');
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = 'در حال ثبت…';
+      submittedAt.value = new Date().toLocaleString('fa-IR', { timeZone: 'Asia/Tehran' });
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok || data.success === 'false' || data.success === false) {
+          throw new Error(data.message || 'Submit failed');
+        }
+
+        const keptName = document.getElementById('name').value;
+        form.reset();
+        document.getElementById('name').value = keptName;
+        dateInput.value = [today.getFullYear(), String(today.getMonth() + 1).padStart(2, '0'), String(today.getDate()).padStart(2, '0')].join('-');
+        rpe.value = '7';
+        rpeValue.textContent = '۷';
+        showStatus('ثبت شد؛ خسته نباشی 💪', 'success');
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      } catch (error) {
+        showStatus('ثبت انجام نشد. اینترنت را بررسی کن و دوباره بزن.', 'error');
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'ثبت تمرین';
+      }
+    });
+  </script>
+</body>
+</html>
