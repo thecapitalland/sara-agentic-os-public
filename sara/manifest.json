@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "1.0",
+  "version": "1.0.0-candidate",
+  "name": "Sara Agentic OS",
+  "status": "public-unified-candidate",
+  "authority": {
+    "machineReadableSource": "sara/manifest.json",
+    "bootstrap": "AGENTS.md",
+    "workLifecycle": "docs/OPERATING_MODEL_V1.md",
+    "runtime": "runtime/",
+    "contextContract": "docs/CONTEXT_ENGINE.md",
+    "assurance": "docs/EVIDENCE_ASSURANCE.md"
+  },
+  "planes": {
+    "governanceDelivery": {
+      "owns": [
+        "objective-contract",
+        "issue/spec",
+        "state",
+        "gates",
+        "branch-pr-lifecycle",
+        "result",
+        "closeout"
+      ]
+    },
+    "runtimeCapability": {
+      "owns": [
+        "agent-catalog",
+        "skill-catalog",
+        "routing-primitives",
+        "tool-boundaries",
+        "runtime-adapters"
+      ]
+    },
+    "contextCognitive": {
+      "owns": [
+        "context-provider-contract",
+        "repository-evidence",
+        "experience-outcome-contracts",
+        "optional-neuromesh-integration"
+      ]
+    },
+    "evidenceAssurance": {
+      "owns": [
+        "validation",
+        "independent-review",
+        "exact-candidate-evidence",
+        "publish-inventory",
+        "rollback"
+      ]
+    }
+  },
+  "agents": [
+    "product-lead",
+    "product-design-lead",
+    "software-architect",
+    "workflow-architect",
+    "frontend-engineer",
+    "backend-integration-engineer",
+    "mobile-application-engineer",
+    "quality-test-engineer",
+    "independent-code-reviewer",
+    "security-architect",
+    "appsec-code-auditor",
+    "release-engineer"
+  ],
+  "skills": [
+    "team-orchestrator",
+    "repo-discovery",
+    "delivery-planning",
+    "incident-response",
+    "prompt-engineering",
+    "workflow-review",
+    "workflow-design",
+    "controlled-change",
+    "workflow-validation",
+    "test-evidence",
+    "api-testing",
+    "test-automation",
+    "tool-evaluation",
+    "mobile-application-delivery",
+    "mobile-store-release",
+    "app-store-optimization"
+  ],
+  "routing": {
+    "simpleWork": "main-agent-direct",
+    "materialWork": "smallest-sufficient-agent-skill-set",
+    "implementationSelfApprovalForbidden": true,
+    "securityTrigger": [
+      "auth",
+      "permissions",
+      "secrets",
+      "sensitive-data",
+      "trust-boundary",
+      "internet-exposure",
+      "high-impact-code"
+    ],
+    "releaseTrigger": [
+      "packaging",
+      "deployment",
+      "rollout",
+      "rollback",
+      "production-runtime"
+    ]
+  },
+  "humanGates": [
+    "production-deploy",
+    "destructive-or-privileged-action",
+    "credential-or-secret-change",
+    "security-risk-acceptance",
+    "material-data-migration",
+    "external-financial-or-message-commitment",
+    "governance-or-runtime-baseline-change"
+  ],
+  "context": {
+    "default": "repo-discovery-and-selective-reading",
+    "optionalProviders": [
+      "neuromesh"
+    ],
+    "providerIsNeverAuthority": true
+  },
+  "evidence": {
+    "exactCandidateIdentity": true,
+    "independentReviewForMaterialProtectedWork": true,
+    "rollbackBeforeStatefulProductionChange": true
+  }
+}

@@ -1,121 +1,57 @@
 # Roadmap
 
-Sara Agentic OS is currently an operating model, not a product platform.
+## Current — Unified v1 candidate
 
-This roadmap is intentionally conservative. It describes public-facing maturity without overstating automation.
+Delivered in this candidate:
+- one authority map;
+- governance/delivery plane;
+- public 12-Agent / 16-Skill runtime contracts;
+- context-engine contract;
+- optional NeuroMesh integration;
+- evidence/assurance rules;
+- adoption templates;
+- baseline validation.
 
----
+## Gate A — Public review
 
-## Current status — Operating Model v0
+Before declaring v1 stable:
+- validate no private paths/secrets/project-specific material;
+- review Agent/Skill duplication and trigger precision;
+- verify license/third-party notices;
+- test adoption on at least one clean sample project;
+- verify Cursor/Codex adapter docs against current clients.
 
-Available now:
+## Gate B — Safe runtime packaging
 
-- core README and positioning
-- Operating Model v0
-- Adoption Guide
-- sanitized case study
-- project-state template
-- work-packet template
-- execution-result template
-- chat-retirement template
-- optional AGENTS template
-- issue-to-agent conveyor guide
-- parallel agents guide
-- operational lessons
-- failure playbooks
-- presentation narrative
+Only if real adoption needs it:
+- deterministic render/install package;
+- dry-run by default;
+- explicit apply;
+- before/after inventory;
+- rollback;
+- no credential mutation.
 
----
+## Gate C — Context provider benchmark
 
-## v0.1 — Public documentation hardening
+Benchmark:
+- baseline repository search;
+- NeuroMesh-assisted context;
+- quality/recall;
+- latency;
+- token/context volume;
+- human intervention/rework.
 
-Goals:
+Keep NeuroMesh optional unless measured value justifies the dependency.
 
-- improve examples
-- add clearer template instructions
-- add a sample project walkthrough
-- add more adoption/help issue templates
-- improve glossary and terminology
-- make the public README easier to scan
-- collect external feedback
+## Gate D — Experience/Learning pilot
 
----
+Start with the Experience/Outcome schema and offline analysis. Do not create autonomous memory mutation or self-promoting policies until evidence demonstrates a real problem and a safe evaluation path.
 
-## v0.2 — Evidence and review patterns
+## Explicit non-goals
 
-Goals:
-
-- improve review verdict examples
-- add sample PR review workflows
-- add examples of `PARTIAL`, `BLOCKED`, and `WRONG DIRECTION`
-- define safer docs/status fast-lane examples
-- document common anti-patterns from public feedback
-
----
-
-## v0.3 — Optional helper checks
-
-Possible additions:
-
-- lightweight checklists for packet completeness
-- GitHub issue template improvements
-- documentation-only validation examples
-- optional CI checks for docs structure
-
-These should remain optional and should not become a hidden runtime or automation platform.
-
----
-
-## Later — Narrow automation experiments
-
-Potential future experiments:
-
-- helper scripts for local validation
-- optional GitHub Actions that check packet fields
-- label consistency checks
-- docs-only housekeeping checks
-- branch cleanup after accepted merge
-
-Any automation should be:
-
-- narrow
-- reversible where possible
-- logged
-- loop-safe
-- not a replacement for review
-- not a general code auto-merge path
-
----
-
-## Not on the roadmap by default
-
-Sara does not currently aim to become:
-
-- a SaaS platform
-- a custom agent runtime
-- a GitHub App
-- a dashboard-heavy tool
-- a queue or background worker
-- a marketplace
-- a blockchain system
-- an autonomous code-merging system
-
-These would require separate design, safety review, and explicit approval.
-
----
-
-## Public readiness checklist
-
-Before actively promoting Sara beyond a quiet public repo, the project should have:
-
-- clear README
-- complete adoption guide
-- sanitized case study
-- issue conveyor guide
-- failure playbooks
-- glossary
-- sample project walkthrough
-- contribution guidelines
-- no private project details
-- no exaggerated automation claims
-- a clear invitation for feedback and collaborators
+- agent swarm for its own sake;
+- mandatory centralized orchestration service;
+- replacing GitHub with a custom project database before needed;
+- global autonomous memory as a prerequisite;
+- production auto-deploy by default;
+- self-approval of material changes.
