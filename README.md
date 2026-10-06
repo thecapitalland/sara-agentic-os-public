@@ -1,299 +1,357 @@
-# Sara Agentic OS
+<div align="center">
 
-**A practical operating model for AI-assisted project execution.**
+# SARA
 
-Sara Agentic OS is not a custom agent runtime, SaaS product, dashboard, marketplace, blockchain system, or auto-coding bot.
+### Agentic Engineering Operating System
 
-It is a lightweight governance and workflow-control model for people who work across tools like ChatGPT, Cursor, Codex, GitHub, CI, pull requests, project handoffs, and review loops — and do not want to become the human relay between them.
+**From intent to evidence-backed delivery.**
 
-> Current status: **Operating Model v0** — practical, experimental, template-based, and intentionally lightweight.
+![Version](https://img.shields.io/badge/version-2.0.0-111827?style=for-the-badge)
+![License](https://img.shields.io/badge/license-MIT-2563EB?style=for-the-badge)
+![Agents](https://img.shields.io/badge/agents-12-7C3AED?style=for-the-badge)
+![Skills](https://img.shields.io/badge/skills-16-0F766E?style=for-the-badge)
+![Status](https://img.shields.io/badge/status-stable-15803D?style=for-the-badge)
+
+A model-agnostic, repository-native operating system for governed AI-assisted engineering.
+
+</div>
 
 ---
 
-## The problem
+## Why Sara exists
 
-AI-assisted development can move fast, but the workflow often becomes messy:
+AI can write code quickly. The harder problem is controlling the work around it.
 
-- important decisions are buried in long chats
-- Cursor/Codex results are pasted manually between tools
-- GitHub issues, PRs, CI, and chat context drift apart
-- partial work gets called "done"
-- prompts silently expand or shrink scope
-- the founder/product owner becomes the routing layer between all tools
+Teams lose time when:
 
-Sara exists to reduce that friction.
+- product intent drifts between conversations and implementation;
+- multiple agents overlap or contradict one another;
+- the wrong context is loaded into expensive reasoning;
+- "done" is claimed without evidence;
+- review and release state become inconsistent;
+- automation gains more authority than the task requires;
+- the human becomes the message bus between every tool and agent.
+
+Sara addresses the operating system around the work.
+
+> **The goal is not more agents. The goal is fewer handoffs, clearer authority, smaller context, stronger evidence, and accepted outcomes.**
 
 ---
 
 ## What Sara is
 
-Sara Agentic OS is an operating model for controlling AI-assisted project work through:
+Sara unifies four planes:
 
-- live project state files
-- project instructions
-- work packets
-- explicit intent locks
-- approved execution envelopes
-- forbidden downgrades
-- human gates
-- structured Cursor/Codex result files
-- GitHub issue / branch / PR discipline
-- issue-to-agent conveyor rules
-- assistant review verdicts
-- chat retirement and handoff protocols
-- optional repository-level instruction templates for AI-assisted tools
+```mermaid
+flowchart TB
+    O["Owner / Product Intent"]
 
-The goal is not to make AI "fully autonomous". The goal is to make AI-assisted execution **less chaotic, less stale, less manual, and easier to verify**.
+    subgraph G["1 · Governance & Delivery"]
+      A["Objective Contract"]
+      W["Work Item"]
+      S["State & Gates"]
+      P["Branch / Change / Review"]
+      R["Result & Closeout"]
+    end
 
----
+    subgraph C["2 · Context & Cognition"]
+      D["Repository Discovery"]
+      X["Task-conditioned Context"]
+      M["Memory & Experience"]
+      Q["Attention / Risk / Confidence"]
+    end
 
-## What Sara is not
+    subgraph E["3 · Runtime & Capability"]
+      T["Main Coordinator"]
+      AG["12 Specialist Agents"]
+      SK["16 Reusable Skills"]
+      ACT["Bounded Actions"]
+    end
 
-Sara is not:
+    subgraph V["4 · Evidence & Assurance"]
+      TEST["Validation"]
+      REV["Independent Review"]
+      EV["Exact Candidate Evidence"]
+      RB["Rollback / Recovery"]
+    end
 
-- a SaaS platform
-- a custom agent runtime
-- a GitHub App
-- a dashboard-heavy product
-- a queue/service worker
-- an autonomous code merger
-- a blockchain/smart-contract system
-- a set of shipped agents
-- a replacement for product judgment
-- a guarantee that AI output is correct
-
-Meaningful product and code decisions should still pass through explicit human gates.
-
----
-
-## Core workflow
-
-```text
-Product intent / owner decision
-        ↓
-Project Instructions + Live Current State
-        ↓
-GitHub Issue + Work Packet
-        ↓
-Cursor / Codex task branch
-        ↓
-Pull Request + Result Review File
-        ↓
-Assistant verdict
-        ↓
-Human gate
-        ↓
-Merge / closeout / state update
+    O --> A --> W
+    W --> S
+    W --> D --> X
+    X --> T
+    S --> T
+    T --> AG
+    T --> SK
+    AG --> ACT
+    SK --> ACT
+    ACT --> TEST --> REV --> EV
+    EV --> R
+    EV --> M
+    R --> S
+    RB --> R
 ```
 
----
-
-## Approved levels
-
-| Level | Name | Status | Notes |
-|---|---|---:|---|
-| 0 | Issue + packet + manual Cursor/Codex instruction | Approved | Safe baseline |
-| 1 | Cursor/Codex writes structured result back to repo/PR | Approved | Reduces manual copy/paste |
-| 2 | CI validates but does not merge | Approved | Green CI is evidence, not final proof |
-| 3 | Label-based review routing | Approved with loop-safety | Labels are signals, not completion proof |
-| 4 | Guarded low-risk auto-actions | Approved narrowly | Docs/status/labels/housekeeping only |
-| 5 | Code auto-merge | Not generally approved | Requires explicit narrow approval |
+Each plane has one job. No plane silently becomes the authority for another.
 
 ---
 
-## Start here
+## The operating loop
 
-- [Operating Model v0](docs/OPERATING_MODEL_V0.md)
-- [Adoption Guide](docs/ADOPTION_GUIDE.md)
-- [Issue Agent Conveyor](docs/ISSUE_AGENT_CONVEYOR.md)
-- [Parallel Agents Guide](docs/PARALLEL_AGENTS.md)
-- [Failure Playbooks](docs/FAILURE_PLAYBOOKS.md)
-- [Operational Lessons](docs/OPERATIONAL_LESSONS.md)
-- [Glossary](docs/GLOSSARY.md)
-- [Roadmap](docs/ROADMAP.md)
-- [Presentation Narrative](docs/PRESENTATION.md)
-- [Collaboration Invitation](docs/COLLABORATION.md)
-- [Support and Resources](docs/SUPPORT_AND_RESOURCES.md)
-- [Sanitized Case Study](docs/CASE_STUDY_SANITIZED.md)
-- [Sample Project Walkthrough](examples/sample-project/README.md)
+```mermaid
+flowchart LR
+    I["Intent"] --> O["Objective"]
+    O --> W["Authorized Work"]
+    W --> C["Compose Context"]
+    C --> R["Route Capability"]
+    R --> X["Execute"]
+    X --> T["Test"]
+    T --> V["Review"]
+    V --> G{"Required gates pass?"}
+    G -- "No" --> X
+    G -- "Yes" --> D["Result"]
+    D --> S["Reconcile State"]
+    S --> F["Done"]
+```
+
+For tiny, low-risk work, Sara deliberately takes the shorter path:
+
+```text
+task → direct execution → focused validation → done
+```
+
+Ceremony is added only when risk, durability, parallelism, or handoff requires it.
+
+---
+
+## Version 2 at a glance
+
+| Capability | Sara v2 |
+|---|---|
+| Durable objective and work contracts | Yes |
+| Explicit State & Gates | Yes |
+| 12 bounded specialist Agents | Yes |
+| 16 reusable Skills | Yes |
+| Smallest-sufficient routing | Yes |
+| Parallel ownership rules | Yes |
+| Task-conditioned context contract | Yes |
+| Experience & Outcome records | Yes |
+| Exact-candidate review evidence | Yes |
+| Rollback / recovery discipline | Yes |
+| Human gates for protected actions | Yes |
+| Vendor or model lock-in | No |
+| Mandatory hosted service | No |
+| Mandatory database | No |
+| Autonomous production authority | No |
+
+---
+
+## Runtime design
+
+Sara does **not** create an agent for every job title.
+
+```mermaid
+flowchart TD
+    N["New capability need"] --> J{"Independent judgment or separate review context?"}
+    J -- "Yes" --> A["Agent"]
+    J -- "No" --> P{"Repeatable procedure?"}
+    P -- "Yes" --> S["Skill"]
+    P -- "No" --> R{"Always-on invariant?"}
+    R -- "Yes" --> U["Rule"]
+    R -- "No" --> I{"External data/action interface?"}
+    I -- "Yes" --> M["Interface Adapter"]
+    I -- "No" --> D["Direct execution"]
+```
+
+The Main Coordinator stays thin and invokes only what the task justifies.
+
+### 12 specialist Agents
+
+| Product & Architecture | Engineering | Assurance & Release |
+|---|---|---|
+| Product Lead | Frontend Engineer | Quality Test Engineer |
+| Product Design Lead | Backend & Integration Engineer | Independent Code Reviewer |
+| Software Architect | Mobile Application Engineer | Security Architect |
+| Workflow Architect |  | Application Security Auditor |
+|  |  | Release Engineer |
+
+### 16 reusable Skills
+
+```text
+Orchestration & Discovery
+├── team-orchestrator
+├── repo-discovery
+└── delivery-planning
+
+Change & Workflow
+├── controlled-change
+├── workflow-design
+├── workflow-review
+├── workflow-validation
+└── incident-response
+
+Quality & Evaluation
+├── test-evidence
+├── test-automation
+├── api-testing
+└── tool-evaluation
+
+Delivery
+├── mobile-application-delivery
+├── mobile-store-release
+└── app-store-optimization
+
+Communication
+└── prompt-engineering
+```
 
 ---
 
 ## Repository structure
 
 ```text
-.
+sara-agentic-os-public/
+│
+├── AGENTS.md
 ├── README.md
-├── CONTRIBUTING.md
-├── LICENSE.md
-├── SECURITY.md
+├── LICENSE
+├── CHANGELOG.md
+│
+├── sara/
+│   └── manifest.json
+│
+├── runtime/
+│   ├── agents/
+│   └── skills/
+│
 ├── docs/
-│   ├── OPERATING_MODEL_V0.md
+│   ├── ARCHITECTURE.md
+│   ├── OPERATING_MODEL.md
+│   ├── RUNTIME_MODEL.md
+│   ├── CONTEXT_ENGINE.md
+│   ├── COGNITIVE_ARCHITECTURE.md
+│   ├── EVIDENCE_ASSURANCE.md
 │   ├── ADOPTION_GUIDE.md
-│   ├── ISSUE_AGENT_CONVEYOR.md
-│   ├── PARALLEL_AGENTS.md
-│   ├── FAILURE_PLAYBOOKS.md
-│   ├── OPERATIONAL_LESSONS.md
-│   ├── GLOSSARY.md
-│   ├── ROADMAP.md
-│   ├── PRESENTATION.md
-│   ├── COLLABORATION.md
-│   ├── SUPPORT_AND_RESOURCES.md
-│   └── CASE_STUDY_SANITIZED.md
-├── examples/
-│   └── sample-project/
+│   └── ROADMAP.md
+│
 ├── templates/
-│   ├── PROJECT_CURRENT_STATE.template.md
-│   ├── WORK_PACKET.template.md
-│   ├── EXECUTION_RESULT.template.md
-│   ├── CHAT_RETIREMENT.template.md
-│   └── AGENTS.template.md        # optional instruction template, not shipped agents
-└── .github/
-    ├── pull_request_template.md
-    └── ISSUE_TEMPLATE/
-        ├── question.yml
-        ├── improvement.yml
-        └── adoption-help.yml
+├── examples/
+│   └── v2-minimal/
+└── scripts/
+    └── validate_baseline.py
 ```
 
 ---
 
 ## Quick start
 
-1. Copy `templates/PROJECT_CURRENT_STATE.template.md` into your project as:
+1. Copy `PROJECT_CURRENT_STATE.template.md` and `GATES.template.md` into your project state area.
+2. Define the real outcome with `OBJECTIVE_CONTRACT.template.yaml`.
+3. Bound material work with `WORK_ITEM.template.yaml`.
+4. Route only the capabilities the task actually needs.
+5. Execute inside explicit ownership.
+6. Validate with evidence.
+7. Add independent review when material.
+8. Close with `EXECUTION_RESULT.template.md` and `OUTCOME.template.yaml`.
+9. Reconcile State & Gates.
 
-   ```text
-   docs/state/PROJECT_CURRENT_STATE.md
-   ```
-
-2. Optional: if you use Cursor, Codex, or similar AI-assisted execution tools, copy `templates/AGENTS.template.md` into your repo as:
-
-   ```text
-   AGENTS.md
-   ```
-
-   This file is only an instruction template. It does not create agents, run agents, or add automation.
-
-3. Before each task, create a work packet from:
-
-   ```text
-   templates/WORK_PACKET.template.md
-   ```
-
-4. Ask Cursor/Codex to read:
-
-   - Project Instructions
-   - `docs/state/PROJECT_CURRENT_STATE.md`
-   - the relevant work packet
-   - `AGENTS.md`, if your project uses it
-
-5. Require Cursor/Codex to write a structured result using:
-
-   ```text
-   templates/EXECUTION_RESULT.template.md
-   ```
-
-6. Review the result with a strict verdict:
-
-   ```text
-   Verdict: DONE / PARTIAL / BLOCKED / WRONG DIRECTION
-   Reason:
-   Gate:
-   Risks:
-   Next action:
-   Human needed: yes/no
-   ```
+See [Adoption Guide](docs/ADOPTION_GUIDE.md).
 
 ---
 
-## Design principles
+## Core rules
 
-- Do not rely on chat memory as the source of truth.
-- Do not silently shrink or expand scope.
-- Do not call partial/foundation work done.
-- Separate product intent from execution prompts.
-- Keep issues short; put execution details in packet files.
-- Keep current-state files concise and current, not historical archives.
-- Use CI as evidence, not as final product acceptance.
-- Keep meaningful code merges human-gated unless narrowly approved.
-- When friction appears, diagnose the workflow problem before writing another prompt.
+### Authority before capability
+A model, agent, credential, available tool, or write permission never creates authority by itself.
 
----
+### Context is evidence, not truth
+Retrieved context can support a decision. It cannot silently become product intent, approval, or accepted project state.
 
-## Who this is for
+### "Done" is a state transition
+A task is not complete because an agent says so. Material completion requires the applicable acceptance evidence, exact candidate identity, review state, and human gate.
 
-Sara may help you if you are:
+### Independent review stays independent
+The implementer is not the sole final reviewer of a material protected change.
 
-- a founder using AI coding tools across multiple projects
-- a product owner trying to keep AI execution aligned with intent
-- a developer using ChatGPT/Cursor/Codex/GitHub together
-- a small team that needs lightweight execution governance without building a full platform
-- someone tired of manually copying long AI outputs between tools
+### Parallel work requires isolation
+Parallel lanes need explicit ownership. Shared state, migrations, schemas, configuration, and protected state are serialized unless ownership and merge order are defined.
 
-Sara is probably overkill if your project is small, single-session, or does not need repeatable execution control.
+### Recovery exists before risky change
+Stateful or hard-to-reverse changes require a rollback or recovery path before authorization.
 
 ---
 
-## Collaboration and support
+## Protected human gates
 
-Sara is early and practical.
+Explicit human authorization is required for:
 
-Useful help can come from many directions:
-
-- workflow critique
-- AI-assisted development experience
-- GitHub/Cursor/Codex patterns
-- issue and PR review discipline
-- examples and templates
-- case studies that can be shared safely
-- code and documentation contributions
-- tooling, infrastructure, or model/API credits
-- financial support for documentation, examples, and structured case studies
-- introductions to builders, reviewers, teams, or communities facing similar workflow problems
-- product judgment and market feedback
-- community feedback and public review
-
-The goal is mutual development: improving Sara while helping contributors improve their own AI-assisted execution workflows.
-
-Read [Collaboration Invitation](docs/COLLABORATION.md) and [Support and Resources](docs/SUPPORT_AND_RESOURCES.md) for suggested ways to help.
+- production release;
+- destructive or privileged actions;
+- credential or secret changes;
+- material data migration;
+- security-risk acceptance;
+- external financial or communication commitments;
+- changes to Sara's own governance or runtime baseline.
 
 ---
 
-## Questions and help
+## Model-agnostic by design
 
-If you have a question, open a GitHub Issue using the **Question / Adoption Help** template.
+Sara keeps the reasoning engine replaceable.
 
-If you want help applying this model to a real project workflow, use the **Adoption Help** issue template and keep examples general and sanitized.
+The durable assets are:
 
-If you want to improve the model, open an Issue first or submit a Pull Request with a clear explanation of the problem and proposed change.
+```text
+objective
++ project state
++ work contracts
++ agent responsibilities
++ skills
++ evidence
++ outcomes
++ learning history
+```
+
+The model is an execution resource, not the source of truth.
 
 ---
 
-## Contributing
+## Validate the distribution
 
-Contributions are welcome, especially:
+```bash
+python scripts/validate_baseline.py
+```
 
-- clearer templates
-- better anti-loop rules
-- better review verdict formats
-- better examples
-- safer GitHub/Cursor/Codex workflow patterns
-- practical case studies without sensitive information
+---
 
-Please read `CONTRIBUTING.md` before opening a PR.
+## Documentation
+
+| Document | Purpose |
+|---|---|
+| [Architecture](docs/ARCHITECTURE.md) | Planes, boundaries, control flow |
+| [Operating Model](docs/OPERATING_MODEL.md) | End-to-end work lifecycle |
+| [Runtime Model](docs/RUNTIME_MODEL.md) | Agent/Skill design and routing |
+| [Context Engine](docs/CONTEXT_ENGINE.md) | Context composition and memory boundary |
+| [Cognitive Architecture](docs/COGNITIVE_ARCHITECTURE.md) | Experience, outcome and learning model |
+| [Evidence & Assurance](docs/EVIDENCE_ASSURANCE.md) | Verification, independent review, rollback |
+| [Adoption Guide](docs/ADOPTION_GUIDE.md) | Minimal-to-advanced adoption |
+| [Roadmap](docs/ROADMAP.md) | Evidence-driven next stages |
 
 ---
 
 ## License
 
-This repository is published under **CC BY-NC 4.0** for documentation and templates unless otherwise stated.
+Sara Agentic OS is released under the **MIT License**.
 
-You may read, adapt, and share the material with attribution for non-commercial use.
+Use it, modify it, fork it, ship it, integrate it, and build on it. The MIT copyright and permission notice must be preserved.
 
-For commercial use, please contact the repository owner.
+See [LICENSE](LICENSE).
 
 ---
 
-## Maintainer note
+<div align="center">
 
-Sara Agentic OS is intentionally small. If a proposed change turns it into a large platform, custom runtime, dashboard, or uncontrolled automation system, it should be treated as a separate product decision — not a silent expansion of this operating model.
+### SARA v2.0.0
+
+**Govern the work. Route the right capability. Keep context small. Prove the outcome.**
+
+</div>

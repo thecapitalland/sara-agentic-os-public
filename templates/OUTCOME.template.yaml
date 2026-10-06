@@ -1,0 +1,21 @@
+outcome:
+  work_item_id: ""
+  candidate_commit: ""
+  pull_request: ""
+  environment: ""
+  status: "PASS|PARTIAL|FAIL|BLOCKED"
+  acceptance_results: []
+  tests:
+    passed: []
+    failed: []
+    skipped: []
+  independent_review: ""
+  security_review: ""
+  uat: ""
+  merged: false
+  deployed: false
+  rolled_back: false
+  evidence_refs: []
+  residual_risks: []
+  what_was_not_done: []
+  next_gate: ""
