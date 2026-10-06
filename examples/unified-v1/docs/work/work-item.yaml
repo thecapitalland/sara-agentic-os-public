@@ -1,0 +1,21 @@
+work_item:
+  id: "1"
+  objective_ref: "docs/work/objective.yaml"
+  repository: "example/project"
+  status: "READY"
+  outcome: "Implement the accepted bounded fix."
+  scope: ["one named workflow"]
+  non_goals: ["unrelated refactor"]
+  risk: "low"
+  protected_domains: []
+  current_owner_lane: "implementation"
+  allowed_write_scope: ["src/relevant/**", "tests/relevant/**", "docs/work/RESULT.md"]
+  forbidden_scope: ["deployment/**", "auth/**"]
+  dependencies: []
+  required_agents: ["backend-integration-engineer"]
+  required_skills: ["repo-discovery", "controlled-change", "test-evidence"]
+  required_gates: ["UAT"]
+  acceptance_criteria: ["target scenario passes", "existing focused regression tests pass"]
+  evidence_required: ["test command/result", "candidate commit"]
+  rollback_or_recovery: "revert the task commit"
+  stop_conditions: ["required scope expands", "protected domain becomes involved"]

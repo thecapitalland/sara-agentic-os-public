@@ -1,54 +1,56 @@
 # Contributing to Sara Agentic OS
 
-Thanks for considering a contribution.
+Sara now has four explicit planes: Governance/Delivery, Runtime/Capability, Context/Cognitive, and Evidence/Assurance.
 
-Sara Agentic OS is intentionally lightweight. Contributions should improve the operating model without turning it into a large platform or uncontrolled automation system.
+Contributions should improve one plane without silently creating a competing authority in another.
 
 ## Good contributions
 
-- clearer templates
-- better work-packet structure
-- better review verdict formats
-- safer Cursor/Codex/GitHub workflow rules
-- anti-loop rules
-- sanitized examples
-- adoption guidance
-- documentation improvements
+- clearer project adoption templates;
+- more precise Agent triggers or smaller responsibilities;
+- reusable Skills that replace unnecessary standing Agents;
+- safer runtime adapters;
+- better evidence/review/rollback contracts;
+- context-provider integrations that remain optional and non-authoritative;
+- reproducible evaluations and sanitized examples;
+- documentation and validation improvements.
 
 ## Discuss first
 
 Open an Issue before proposing:
+- a new standing Agent;
+- a new always-on service/runtime/database;
+- write-capable automation;
+- merge/release authority changes;
+- memory that can promote itself into canonical truth;
+- licensing changes;
+- vendoring third-party code;
+- major vocabulary/authority changes.
 
-- automation workflows
-- GitHub Actions behavior
-- label-based routing
-- merge policy changes
-- any new service, runtime, dashboard, bot, or queue
-- license changes
-- major terminology changes
+## Design test
+
+A proposed change should answer:
+
+1. What real bottleneck does it solve?
+2. What existing asset or simpler baseline competes with it?
+3. Which plane owns it?
+4. Does it duplicate authority?
+5. What evidence would justify keeping or rejecting it?
+6. Is it reversible?
 
 ## Privacy
 
-Keep examples sanitized. Do not add private project details, private links, private chat transcripts, customer data, or non-sanitized case studies.
+Public contributions must not include credentials, private repository links, customer data, internal machine paths, raw private evidence, or full private chat transcripts.
 
-## Pull request expectations
+## Pull requests
 
-A good PR should include:
+A good PR states:
+- problem/outcome;
+- scope/non-goals;
+- affected plane(s);
+- changed files;
+- validation;
+- security/privacy/license implications;
+- rollback or compatibility impact when applicable.
 
-- the problem being solved
-- the proposed change
-- affected files
-- why this stays within the operating-model scope
-- risks or tradeoffs
-
-Please keep PRs small and focused.
-
-## Review standard
-
-PRs are reviewed against this question:
-
-```text
-Does this reduce real workflow friction without creating hidden complexity?
-```
-
-A change may be rejected if it adds complexity without clear value, weakens human gates, encourages false DONE claims, depends on private project details, or makes the workflow harder to adopt.
+Green CI is evidence, not automatic acceptance.

@@ -1,176 +1,99 @@
-# Adoption Guide
+# Adoption Guide — Unified v1
 
-This guide explains how to apply Sara Agentic OS to a real project without turning it into a heavy platform.
+Sara can be adopted incrementally. Do not install every artifact just because it exists.
 
----
+## Level A — Governance only
 
-## Step 1 — Decide whether you actually need it
+Use this when you already have a capable coding assistant and mainly need durable project state.
 
-Use Sara if your project has recurring AI-assisted execution with multiple tools, branches, PRs, reviews, or handoffs.
-
-Do not use Sara if the task is simple, one-off, or does not need repeatable control.
-
----
-
-## Step 2 — Create the minimum project structure
-
-Recommended structure:
+Copy into your project:
 
 ```text
-docs/
-├── state/
-│   └── PROJECT_CURRENT_STATE.md
-└── workflow/
-    ├── packets/
-    ├── reviews/
-    └── retirements/
 AGENTS.md
+docs/state/PROJECT_CURRENT_STATE.md
+docs/state/GATES.md
 ```
 
-Copy the templates from this repository:
+Use Sara templates for objective/work/result artifacts.
+
+Best for:
+- small teams;
+- founder-led projects;
+- mixed ChatGPT/Cursor/Codex workflows;
+- projects suffering from stale context or false DONE claims.
+
+## Level B — Governance + Runtime contracts
+
+Add the Agent/Skill baseline when repeated work benefits from explicit independent roles.
+
+Start with only:
+- `team-orchestrator`
+- `repo-discovery`
+- `delivery-planning`
+- one or two implementation roles;
+- `quality-test-engineer`;
+- `independent-code-reviewer`.
+
+Promote security/release/mobile specialists only when triggered by real work.
+
+## Level C — Optional context engine
+
+If repository search/context cost becomes a measured problem, integrate NeuroMesh or another provider through the context contract.
+
+Do not make it mandatory before measuring the baseline.
+
+## Level D — Runtime packaging
+
+Only after the contracts prove useful, use a deterministic client adapter/install process. Keep installation reversible and separate from authoring.
+
+## Minimal project structure
 
 ```text
-templates/PROJECT_CURRENT_STATE.template.md
-templates/WORK_PACKET.template.md
-templates/EXECUTION_RESULT.template.md
-templates/CHAT_RETIREMENT.template.md
-templates/AGENTS.template.md
+project/
+├── AGENTS.md
+├── docs/
+│   ├── state/
+│   │   ├── PROJECT_CURRENT_STATE.md
+│   │   └── GATES.md
+│   └── work/
+│       ├── objective.yaml
+│       ├── work-item.yaml
+│       └── result.md
+└── .cursor/ or client-specific project rules when needed
 ```
 
----
+## First task
 
-## Step 3 — Write Project Instructions
+1. Write the real objective, including non-goals.
+2. Decide whether the task is small enough for direct work.
+3. For material work, create an Issue/spec and work item.
+4. Discover repository reality.
+5. Route the smallest sufficient capability set.
+6. Execute on an isolated branch.
+7. Run focused validation.
+8. Use independent review when material/protected.
+9. Record the Result.
+10. Reconcile project State/Gates.
 
-Your Project Instructions should tell ChatGPT or another assistant:
+## Avoid
 
-- what the product is
-- what the product is not
-- what state sources to read first
-- what gates are open or closed
-- how to judge Cursor/Codex output
-- what not to generate without approval
+- copying all 12 Agents into a project when user-level runtime already provides them;
+- treating a Skill as a manager Agent;
+- creating a project database before GitHub/State files become insufficient;
+- enabling automation before the manual lifecycle is reliable;
+- turning a context engine into project authority;
+- letting a strong model bypass approval/evidence rules.
 
-Example startup rule:
+## Client adapters
 
-```text
-Before answering project questions, read Project Instructions and the latest live current-state source first. Do not rely on memory. Do not silently shrink or expand scope. Do not call partial/foundation work done.
+See:
+- `runtime/adapters/cursor/README.md`
+- `runtime/adapters/codex/README.md`
+
+## Validation
+
+From the Sara repository:
+
+```bash
+python scripts/validate_baseline.py
 ```
-
----
-
-## Step 4 — Keep the current-state file short
-
-The current-state file should answer:
-
-- Where are we now?
-- What is approved?
-- What is blocked?
-- What gates are open?
-- What is the next safe action?
-- Is a human decision needed?
-
-It should not become a full chat transcript or history dump.
-
----
-
-## Step 5 — Use packets for execution detail
-
-Do not put large task instructions inside a GitHub issue.
-
-Instead:
-
-1. Create a short issue.
-2. Put detailed execution instructions in a packet file.
-3. Tell Cursor/Codex to read the packet.
-4. Require a result file when done.
-
----
-
-## Step 6 — Require structured result output
-
-For nontrivial work, the execution agent should write a result file containing:
-
-- summary
-- touched files
-- validation performed
-- what was not done
-- risks
-- PR link
-- next action
-
-This reduces manual copy/paste and avoids long chat logs.
-
----
-
-## Step 7 — Review with a strict verdict
-
-Use:
-
-```text
-Verdict: DONE / PARTIAL / BLOCKED / WRONG DIRECTION
-Reason:
-Gate:
-Risks:
-Next action:
-Human needed: yes/no
-```
-
-Never accept vague statements like:
-
-- "implemented"
-- "should work"
-- "foundation is ready"
-- "tests pass"
-
-without matching them against the acceptance criteria.
-
----
-
-## Step 8 — Retire long chats
-
-When a chat becomes long, slow, or stale, retire it.
-
-A retirement handoff should include:
-
-- current state
-- decisions made
-- open gates
-- locked product intent
-- next safe action
-- what not to repeat
-- startup prompt for the next chat
-
-Do not keep every historical handoff as active context. Keep one current-state file as the live source.
-
----
-
-## Step 9 — Add automation slowly
-
-Start manual.
-
-Only add automation after the manual workflow is stable.
-
-Suggested progression:
-
-1. Manual issue + packet
-2. Cursor/Codex result file
-3. CI validation
-4. Label-based review routing
-5. Narrow low-risk auto-actions
-6. Code auto-merge only with explicit narrow approval
-
----
-
-## Step 10 — Keep product judgment human-gated
-
-Sara can organize execution, but it should not replace product judgment.
-
-A human should still decide:
-
-- product direction
-- acceptance of meaningful work
-- code merge gates
-- security-sensitive changes
-- deployment/staging exposure
-- scope changes
-- anything irreversible or high-risk
