@@ -1,0 +1,12 @@
+objective:
+  problem: "A real workflow has one reproducible friction point."
+  desired_outcome: "Remove that friction without changing unrelated behavior."
+  value_metric: "acceptance scenario passes"
+  constraints: ["preserve existing public contract"]
+  non_goals: ["architecture rewrite", "unrelated cleanup"]
+  assumptions: []
+  alternatives: ["reuse current architecture"]
+  major_risks: ["scope creep"]
+  recommendation: "build"
+  confidence: "high"
+  human_decision_required: "none"

@@ -6,26 +6,15 @@ Last updated: YYYY-MM-DD
 
 ## Active work
 
-| Work item | Status | Owner lane | PR | Next gate |
-| --- | --- | --- | --- | --- |
+| Work item | Status | Owner lane | Candidate | Next gate |
+|---|---|---|---|---|
 
 ## Accepted facts
-
-- 
-
+-
 ## Open blockers
-
-- 
-
-## Current environments
-
-- local:
-- test:
-- staging:
-- production:
-
+-
+## Environment / release state
+-
 ## Next executable action
-
 ## Human decision genuinely required
-
 - none

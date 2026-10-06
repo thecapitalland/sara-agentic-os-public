@@ -4,57 +4,52 @@ from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-manifest_path = ROOT / "sara" / "manifest.json"
-
 errors = []
 
 try:
-    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest = json.loads((ROOT / "sara" / "manifest.json").read_text(encoding="utf-8"))
 except Exception as exc:
     print(f"FAIL: cannot read manifest: {exc}")
     sys.exit(1)
 
-required_docs = [
-    "AGENTS.md",
-    "docs/ARCHITECTURE.md",
-    "docs/OPERATING_MODEL_V1.md",
-    "docs/RUNTIME_MODEL.md",
-    "docs/CONTEXT_ENGINE.md",
-    "docs/EVIDENCE_ASSURANCE.md",
-    "docs/COGNITIVE_ARCHITECTURE.md",
-    "docs/MIGRATION_AND_LINEAGE.md",
-    "docs/DOCUMENT_REGISTRY.md",
-    "THIRD_PARTY_NOTICES.md",
+required = [
+    "README.md","LICENSE","CHANGELOG.md","AGENTS.md",
+    "docs/ARCHITECTURE.md","docs/OPERATING_MODEL.md","docs/RUNTIME_MODEL.md",
+    "docs/CONTEXT_ENGINE.md","docs/COGNITIVE_ARCHITECTURE.md",
+    "docs/EVIDENCE_ASSURANCE.md","docs/ADOPTION_GUIDE.md",
+    "docs/DOCUMENT_REGISTRY.md","docs/ROADMAP.md",
 ]
-for rel in required_docs:
+for rel in required:
     if not (ROOT / rel).is_file():
         errors.append(f"missing required file: {rel}")
 
+if manifest.get("version") != "2.0.0":
+    errors.append("manifest version must be 2.0.0")
+if manifest.get("license") != "MIT":
+    errors.append("manifest license must be MIT")
+
 agents = manifest.get("agents", [])
 skills = manifest.get("skills", [])
-
 if len(agents) != 12 or len(set(agents)) != 12:
     errors.append(f"expected 12 unique agents, got {len(agents)}")
 if len(skills) != 16 or len(set(skills)) != 16:
     errors.append(f"expected 16 unique skills, got {len(skills)}")
 
 for name in agents:
-    path = ROOT / "runtime" / "agents" / f"{name}.md"
-    if not path.is_file():
-        errors.append(f"missing agent contract: {path.relative_to(ROOT)}")
-
+    if not (ROOT / "runtime" / "agents" / f"{name}.md").is_file():
+        errors.append(f"missing agent: {name}")
 for name in skills:
-    path = ROOT / "runtime" / "skills" / name / "SKILL.md"
-    if not path.is_file():
-        errors.append(f"missing skill contract: {path.relative_to(ROOT)}")
+    if not (ROOT / "runtime" / "skills" / name / "SKILL.md").is_file():
+        errors.append(f"missing skill: {name}")
 
 if errors:
-    print("BASELINE VALIDATION: FAIL")
+    print("SARA V2 VALIDATION: FAIL")
     for error in errors:
         print(f"- {error}")
     sys.exit(1)
 
-print("BASELINE VALIDATION: PASS")
-print(f"version={manifest.get('version')}")
+print("SARA V2 VALIDATION: PASS")
+print("version=2.0.0")
 print(f"agents={len(agents)}")
 print(f"skills={len(skills)}")
+print("license=MIT")

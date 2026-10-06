@@ -1,113 +1,46 @@
-# Unified Architecture
+# Architecture
 
-## Optimization target
+Sara v2 separates authority, context, execution, and assurance into four planes.
 
-Sara optimizes for **accepted outcomes** with less human relay, rework, context waste, and governance ambiguity.
-
-It does not optimize for agent count, automation count, model prestige, or maximum autonomy.
-
-## Four planes
-
-### 1. Governance & Delivery Plane
-
-Owns the durable lifecycle of work:
+## Governance & Delivery
+Owns what work is authorized and where it is in its lifecycle.
 
 ```text
-Intent -> Objective Contract -> Issue/spec -> State/Gates
-       -> bounded execution -> branch/PR -> Result -> closeout
+Intent -> Objective -> Work Item -> State/Gates -> Change -> Result -> Reconciled completion
 ```
 
-This plane decides **what work is authorized and what state it is in**. It does not define how every specialist is implemented.
+## Context & Cognition
+Owns what evidence should be brought into the current reasoning task: repository discovery, task-conditioned evidence, uncertainty, memory boundaries, Experience/Outcome records, and learning candidates.
 
-### 2. Runtime & Capability Plane
+Context never creates authority.
 
-Owns the reusable execution capability:
+## Runtime & Capability
+Owns how authorized work is routed to the smallest sufficient capability set: Main Coordinator, specialist Agents, reusable Skills, and action/write boundaries.
 
-- Main Agent as parent coordinator.
-- 12 independent-judgment Agent contracts.
-- 16 reusable procedural Skills.
-- runtime/tool permission boundaries.
-- Cursor/Codex adapter rules.
+It does not own project State or product intent.
 
-This plane decides **which capability should act**. It does not own project product state.
-
-### 3. Context & Cognitive Plane
-
-Owns how evidence is assembled for a task:
-
-- repository discovery;
-- task-conditioned context;
-- provenance/freshness;
-- optional structural context engine;
-- experience/outcome records;
-- future memory/learning candidates.
-
-A context provider may improve retrieval, but it never becomes product or governance authority.
-
-### 4. Evidence & Assurance Plane
-
-Owns proof:
-
-- deterministic validation where possible;
-- independent review for material protected work;
-- exact commit/head/environment identity;
-- before/after inventory for runtime publication;
-- rollback evidence;
-- PASS/PARTIAL/BLOCKED semantics.
+## Evidence & Assurance
+Owns proof: deterministic validation, independent review, exact candidate identity, acceptance evidence, rollback, recovery, and residual-risk reporting.
 
 ## Control flow
 
-```text
-OWNER / PRODUCT INTENT
-        |
-        v
-Objective Contract
-        |
-   human gate when needed
-        |
-        v
-Work Ledger (Issue/spec + State/Gates)
-        |
-        +------ context request ------+
-        |                             v
-        |                    Context/Cognitive Plane
-        |                    repo / optional NeuroMesh
-        |                             |
-        v                             |
-Runtime/Capability Router <-----------+
-        |
-        v
-bounded Agent/Skill execution
-        |
-        v
-tests / evidence / review
-        |
-        v
-Result + exact candidate
-        |
-        +--> remediation
-        |
-        +--> human UAT / production gate when applicable
-        |
-        v
-reconciled completion
+```mermaid
+sequenceDiagram
+    participant O as Owner
+    participant G as Governance
+    participant C as Context
+    participant R as Runtime
+    participant A as Assurance
+
+    O->>G: intent / outcome
+    G->>G: objective + work boundary
+    G->>C: request relevant evidence
+    C-->>R: bounded task context
+    G->>R: authority + gates
+    R->>R: execute smallest sufficient capability set
+    R->>A: candidate + evidence
+    A-->>G: validation / review result
+    G-->>O: accepted result or real decision gate
 ```
 
-## Anti-duplication rules
-
-1. Runtime Agents do not redefine project State/Gates.
-2. Project governance does not maintain a competing global Agent roster.
-3. Context/memory never silently promotes itself to canonical truth.
-4. CI/tests provide evidence; they do not create business authority.
-5. Models and tools are replaceable implementation choices, not constitutional roles.
-6. Historical evidence does not become current policy merely because it remains in Git.
-
-## Smallest sufficient path
-
-The default path for a small change is deliberately short:
-
-```text
-task -> direct execution -> focused validation -> review if material -> done
-```
-
-Use the full lifecycle only when durability, risk, parallelism, or cross-tool handoff justifies it.
+If two documents appear to own the same policy, the manifest and document registry decide.

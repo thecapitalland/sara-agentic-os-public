@@ -1,26 +1,50 @@
 {
-  "schemaVersion": "1.0",
-  "version": "1.0.0-candidate",
+  "schemaVersion": "2.0",
+  "version": "2.0.0",
   "name": "Sara Agentic OS",
-  "status": "public-unified-candidate",
+  "productType": "agentic-engineering-operating-system",
+  "status": "stable",
+  "license": "MIT",
+  "principles": [
+    "one-authority-per-concern",
+    "smallest-sufficient-routing",
+    "human-authority-for-protected-actions",
+    "context-is-evidence-not-authority",
+    "exact-candidate-evidence",
+    "reversible-before-irreversible",
+    "model-agnostic",
+    "repository-native"
+  ],
   "authority": {
-    "machineReadableSource": "sara/manifest.json",
+    "manifest": "sara/manifest.json",
     "bootstrap": "AGENTS.md",
-    "workLifecycle": "docs/OPERATING_MODEL_V1.md",
-    "runtime": "runtime/",
-    "contextContract": "docs/CONTEXT_ENGINE.md",
-    "assurance": "docs/EVIDENCE_ASSURANCE.md"
+    "architecture": "docs/ARCHITECTURE.md",
+    "operatingModel": "docs/OPERATING_MODEL.md",
+    "runtimeModel": "docs/RUNTIME_MODEL.md",
+    "contextModel": "docs/CONTEXT_ENGINE.md",
+    "cognitiveModel": "docs/COGNITIVE_ARCHITECTURE.md",
+    "assuranceModel": "docs/EVIDENCE_ASSURANCE.md"
   },
   "planes": {
     "governanceDelivery": {
       "owns": [
-        "objective-contract",
-        "issue/spec",
+        "objective",
+        "work-authorization",
         "state",
         "gates",
-        "branch-pr-lifecycle",
+        "change-lifecycle",
         "result",
         "closeout"
+      ]
+    },
+    "contextCognition": {
+      "owns": [
+        "task-context",
+        "evidence-selection",
+        "memory-boundary",
+        "experience",
+        "outcome",
+        "learning-candidates"
       ]
     },
     "runtimeCapability": {
@@ -28,25 +52,16 @@
         "agent-catalog",
         "skill-catalog",
         "routing-primitives",
-        "tool-boundaries",
-        "runtime-adapters"
-      ]
-    },
-    "contextCognitive": {
-      "owns": [
-        "context-provider-contract",
-        "repository-evidence",
-        "experience-outcome-contracts",
-        "optional-neuromesh-integration"
+        "action-boundaries"
       ]
     },
     "evidenceAssurance": {
       "owns": [
         "validation",
         "independent-review",
-        "exact-candidate-evidence",
-        "publish-inventory",
-        "rollback"
+        "candidate-identity",
+        "rollback",
+        "recovery"
       ]
     }
   },
@@ -83,45 +98,17 @@
     "app-store-optimization"
   ],
   "routing": {
-    "simpleWork": "main-agent-direct",
-    "materialWork": "smallest-sufficient-agent-skill-set",
-    "implementationSelfApprovalForbidden": true,
-    "securityTrigger": [
-      "auth",
-      "permissions",
-      "secrets",
-      "sensitive-data",
-      "trust-boundary",
-      "internet-exposure",
-      "high-impact-code"
-    ],
-    "releaseTrigger": [
-      "packaging",
-      "deployment",
-      "rollout",
-      "rollback",
-      "production-runtime"
-    ]
+    "simpleWork": "direct",
+    "materialWork": "smallest-sufficient-capability-set",
+    "implementerCannotSolelyApproveMaterialWork": true
   },
-  "humanGates": [
-    "production-deploy",
+  "protectedHumanGates": [
+    "production-release",
     "destructive-or-privileged-action",
     "credential-or-secret-change",
-    "security-risk-acceptance",
     "material-data-migration",
-    "external-financial-or-message-commitment",
+    "security-risk-acceptance",
+    "external-financial-or-communication-commitment",
     "governance-or-runtime-baseline-change"
-  ],
-  "context": {
-    "default": "repo-discovery-and-selective-reading",
-    "optionalProviders": [
-      "neuromesh"
-    ],
-    "providerIsNeverAuthority": true
-  },
-  "evidence": {
-    "exactCandidateIdentity": true,
-    "independentReviewForMaterialProtectedWork": true,
-    "rollbackBeforeStatefulProductionChange": true
-  }
+  ]
 }

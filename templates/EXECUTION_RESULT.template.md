@@ -2,29 +2,19 @@
 
 ## Identity
 - Work item:
-- Branch:
-- Candidate commit:
-- Pull request:
-- Runtime/model (if relevant):
+- Candidate:
+- Branch / change reference:
 
 ## Scope completed
-
-## Files/surfaces changed
-
+## Files / surfaces changed
 ## Validation
-
 ## Acceptance criteria
-
-## Independent/security review
-
+## Independent / security review
 ## Risks and residual gaps
-
 ## What was not done
-
-## Rollback/recovery
+## Rollback / recovery
 
 ## Verdict
-
 `PASS / PARTIAL / FAIL / BLOCKED`
 
 ## Next gate

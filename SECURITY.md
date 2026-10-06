@@ -1,9 +1,18 @@
-# Safe Use Policy
+# Security Policy
 
-This repository contains documentation and templates.
+## Supported version
 
-Please keep examples general and sanitized.
+| Version | Supported |
+|---|---|
+| 2.x | Yes |
+| 1.x and earlier | No |
 
-Do not add real customer material, internal operational details, or full chat transcripts.
+Core rules:
+- least privilege for write-capable actions;
+- no credential material in repository evidence;
+- explicit human gates for protected actions;
+- independent review for material sensitive changes;
+- context and memory never create authority;
+- rollback/recovery before high-impact stateful change.
 
-If you see material that should not be public, open a short Issue asking the maintainer to review it.
+For a suspected vulnerability, open a minimal report without publishing credentials, exploit data against real systems, or sensitive project information.

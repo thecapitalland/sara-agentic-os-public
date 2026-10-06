@@ -1,179 +1,357 @@
-# Sara Agentic OS
+<div align="center">
 
-**A unified, Git-first operating system for governed AI-assisted engineering.**
+# SARA
 
-Sara combines four concerns that are often scattered across separate tools and repositories:
+### Agentic Engineering Operating System
 
-1. **Governance & Delivery** — turn intent into durable, reviewable project work.
-2. **Runtime & Capabilities** — route work to the smallest sufficient Agent/Skill set.
-3. **Context & Cognition** — give models task-conditioned repository evidence instead of flooding context.
-4. **Evidence & Assurance** — prove what happened, preserve exact candidate identity, and keep rollback/review boundaries explicit.
+**From intent to evidence-backed delivery.**
 
-> Status: **Unified v1 candidate**. The architecture and public runtime baseline are usable, but live installation, automation, and production authority remain explicit operator decisions.
+![Version](https://img.shields.io/badge/version-2.0.0-111827?style=for-the-badge)
+![License](https://img.shields.io/badge/license-MIT-2563EB?style=for-the-badge)
+![Agents](https://img.shields.io/badge/agents-12-7C3AED?style=for-the-badge)
+![Skills](https://img.shields.io/badge/skills-16-0F766E?style=for-the-badge)
+![Status](https://img.shields.io/badge/status-stable-15803D?style=for-the-badge)
 
-## Why this exists
+A model-agnostic, repository-native operating system for governed AI-assisted engineering.
 
-AI-assisted projects usually break in the seams between systems:
+</div>
 
-- product intent lives in chat while code state lives in Git;
-- agents duplicate roles or call an entire virtual company for a small task;
-- large repositories flood models with irrelevant files;
-- tools expose actions without defining authority;
-- "done" is asserted without exact evidence;
-- review, merge, release, memory, and handoff state drift apart;
-- the human becomes the transport layer between ChatGPT, Cursor, Codex, GitHub, CI, and deployment.
+---
 
-Sara treats those as one system problem.
+## Why Sara exists
 
-## Unified architecture
+AI can write code quickly. The harder problem is controlling the work around it.
 
-```text
-Owner / Product Intent
-        |
-        v
-+-------------------------------+
-| GOVERNANCE & DELIVERY PLANE   |
-| objective -> issue/spec       |
-| state/gates -> branch/PR      |
-| review -> result -> closeout  |
-+---------------+---------------+
-                |
-                v
-+-------------------------------+
-| RUNTIME & CAPABILITY PLANE    |
-| Main/orchestrator             |
-| 12 trigger-gated Agents       |
-| 16 reusable Skills            |
-| tool/approval boundaries      |
-+---------------+---------------+
-                |
-                v
-+-------------------------------+
-| CONTEXT & COGNITIVE PLANE     |
-| repo discovery                |
-| task-conditioned context      |
-| optional NeuroMesh MCP        |
-| experience/outcome contracts  |
-+---------------+---------------+
-                |
-                v
-+-------------------------------+
-| EVIDENCE & ASSURANCE PLANE    |
-| tests / QA / independent      |
-| review / exact-head evidence  |
-| publish / rollback discipline |
-+-------------------------------+
+Teams lose time when:
+
+- product intent drifts between conversations and implementation;
+- multiple agents overlap or contradict one another;
+- the wrong context is loaded into expensive reasoning;
+- "done" is claimed without evidence;
+- review and release state become inconsistent;
+- automation gains more authority than the task requires;
+- the human becomes the message bus between every tool and agent.
+
+Sara addresses the operating system around the work.
+
+> **The goal is not more agents. The goal is fewer handoffs, clearer authority, smaller context, stronger evidence, and accepted outcomes.**
+
+---
+
+## What Sara is
+
+Sara unifies four planes:
+
+```mermaid
+flowchart TB
+    O["Owner / Product Intent"]
+
+    subgraph G["1 · Governance & Delivery"]
+      A["Objective Contract"]
+      W["Work Item"]
+      S["State & Gates"]
+      P["Branch / Change / Review"]
+      R["Result & Closeout"]
+    end
+
+    subgraph C["2 · Context & Cognition"]
+      D["Repository Discovery"]
+      X["Task-conditioned Context"]
+      M["Memory & Experience"]
+      Q["Attention / Risk / Confidence"]
+    end
+
+    subgraph E["3 · Runtime & Capability"]
+      T["Main Coordinator"]
+      AG["12 Specialist Agents"]
+      SK["16 Reusable Skills"]
+      ACT["Bounded Actions"]
+    end
+
+    subgraph V["4 · Evidence & Assurance"]
+      TEST["Validation"]
+      REV["Independent Review"]
+      EV["Exact Candidate Evidence"]
+      RB["Rollback / Recovery"]
+    end
+
+    O --> A --> W
+    W --> S
+    W --> D --> X
+    X --> T
+    S --> T
+    T --> AG
+    T --> SK
+    AG --> ACT
+    SK --> ACT
+    ACT --> TEST --> REV --> EV
+    EV --> R
+    EV --> M
+    R --> S
+    RB --> R
 ```
 
-The planes cooperate, but they do **not** redefine one another's authority.
+Each plane has one job. No plane silently becomes the authority for another.
 
-## What each predecessor contributes
+---
 
-| Source | Retained strengths | Unified destination |
-| --- | --- | --- |
-| Sara governance work | Git-first lifecycle, State/Gates, Issue/spec/branch/PR/Result, fail-closed handoff, parallel ownership | Governance & Delivery Plane |
-| Agentic Engineering System | 12-Agent / 16-Skill capability model, Agent-vs-Skill discipline, routing, approval/tool boundaries, runtime adapters | Runtime & Capability Plane |
-| Agentic Control Plane | publish pins, before/after inventory, exact hashes, independent verification, rollback/evidence discipline | Evidence & Assurance Plane |
-| Amir / NeuroMesh research | structural context graph, bounded retrieval/folding, MCP integration, cognitive/experience/learning design | Context & Cognitive Plane |
+## The operating loop
 
-The archived control-plane track is **not** a separate runtime anymore. Its useful rules are absorbed here.
-
-## Canonical source map
-
-For this repository:
-
-```text
-sara/manifest.json                         -> machine-readable authority map
-AGENTS.md                                  -> thin bootstrap/router
-docs/OPERATING_MODEL_V1.md                 -> project/work lifecycle
-runtime/agents/                            -> public Agent contracts
-runtime/skills/                            -> public Skill procedures
-docs/CONTEXT_ENGINE.md                     -> context-provider contract
-docs/EVIDENCE_ASSURANCE.md                 -> verification/publish/rollback
-templates/                                 -> project adoption artifacts
+```mermaid
+flowchart LR
+    I["Intent"] --> O["Objective"]
+    O --> W["Authorized Work"]
+    W --> C["Compose Context"]
+    C --> R["Route Capability"]
+    R --> X["Execute"]
+    X --> T["Test"]
+    T --> V["Review"]
+    V --> G{"Required gates pass?"}
+    G -- "No" --> X
+    G -- "Yes" --> D["Result"]
+    D --> S["Reconcile State"]
+    S --> F["Done"]
 ```
 
-Historical v0 documents remain useful background, but they are not authoritative when they conflict with v1.
-
-## Default work flow
+For tiny, low-risk work, Sara deliberately takes the shorter path:
 
 ```text
-Intent
-  -> Objective Contract
-  -> Issue + accepted work artifact
-  -> bounded execution
-  -> branch + PR
-  -> deterministic validation
-  -> independent review when material
-  -> human gate when protected
-  -> Result + State/Gates reconciliation
+task → direct execution → focused validation → done
 ```
 
-Simple, low-risk work may skip unnecessary ceremony. Material or protected work may not skip required authority/evidence gates.
+Ceremony is added only when risk, durability, parallelism, or handoff requires it.
 
-## Runtime model
+---
 
-Sara does not equate a job title with an Agent.
+## Version 2 at a glance
 
-- **Agent/Subagent** — independent judgment or separate review context.
-- **Skill** — repeatable method/checklist/procedure.
-- **Rule** — short invariant or project constraint.
-- **MCP** — external data/action interface.
-- **Hook/CI** — deterministic enforcement.
-- **Automation** — trigger; never authority by itself.
+| Capability | Sara v2 |
+|---|---|
+| Durable objective and work contracts | Yes |
+| Explicit State & Gates | Yes |
+| 12 bounded specialist Agents | Yes |
+| 16 reusable Skills | Yes |
+| Smallest-sufficient routing | Yes |
+| Parallel ownership rules | Yes |
+| Task-conditioned context contract | Yes |
+| Experience & Outcome records | Yes |
+| Exact-candidate review evidence | Yes |
+| Rollback / recovery discipline | Yes |
+| Human gates for protected actions | Yes |
+| Vendor or model lock-in | No |
+| Mandatory hosted service | No |
+| Mandatory database | No |
+| Autonomous production authority | No |
 
-The public baseline contains **12 Agents and 16 Skills**. The Main Agent remains the parent coordinator; do not invoke the whole roster.
+---
 
-See [Runtime Model](docs/RUNTIME_MODEL.md).
+## Runtime design
 
-## Context engine
+Sara does **not** create an agent for every job title.
 
-Sara is model-agnostic and context-provider-agnostic. The default baseline is repository discovery plus selective file reading.
+```mermaid
+flowchart TD
+    N["New capability need"] --> J{"Independent judgment or separate review context?"}
+    J -- "Yes" --> A["Agent"]
+    J -- "No" --> P{"Repeatable procedure?"}
+    P -- "Yes" --> S["Skill"]
+    P -- "No" --> R{"Always-on invariant?"}
+    R -- "Yes" --> U["Rule"]
+    R -- "No" --> I{"External data/action interface?"}
+    I -- "Yes" --> M["Interface Adapter"]
+    I -- "No" --> D["Direct execution"]
+```
 
-For large repositories, Sara supports **NeuroMesh** as an optional local MCP context engine. NeuroMesh can build a structural graph, route to task-relevant symbols/files, skeletonize unused bodies, and expose expansion/impact/trace tools without making NeuroMesh the project source of truth.
+The Main Coordinator stays thin and invokes only what the task justifies.
 
-Sara intentionally does **not** vendor the old internal NeuroMesh fork. Use the maintained upstream implementation and keep Sara's integration contract here.
+### 12 specialist Agents
 
-See [Context Engine](docs/CONTEXT_ENGINE.md).
+| Product & Architecture | Engineering | Assurance & Release |
+|---|---|---|
+| Product Lead | Frontend Engineer | Quality Test Engineer |
+| Product Design Lead | Backend & Integration Engineer | Independent Code Reviewer |
+| Software Architect | Mobile Application Engineer | Security Architect |
+| Workflow Architect |  | Application Security Auditor |
+|  |  | Release Engineer |
 
-## Public baseline
+### 16 reusable Skills
 
-- 12 public Agent contracts.
-- 16 reusable Skills.
-- project objective/work/outcome templates.
-- State/Gates/result lifecycle.
-- Cursor and Codex adapter guidance.
-- optional NeuroMesh MCP integration.
-- exact-head review and rollback rules.
-- validation script and read-only CI.
+```text
+Orchestration & Discovery
+├── team-orchestrator
+├── repo-discovery
+└── delivery-planning
 
-## Safety
+Change & Workflow
+├── controlled-change
+├── workflow-design
+├── workflow-review
+├── workflow-validation
+└── incident-response
 
-Availability of a model, tool, token, credential, plugin, MCP, shell, or write permission does **not** create authority.
+Quality & Evaluation
+├── test-evidence
+├── test-automation
+├── api-testing
+└── tool-evaluation
 
-Explicit human approval remains required for production deployment, destructive operations, privileged/security-sensitive changes, credential/secret changes, material data migration, billing/external commitments, or changes to the governance/runtime baseline itself.
+Delivery
+├── mobile-application-delivery
+├── mobile-store-release
+└── app-store-optimization
 
-## Start here
+Communication
+└── prompt-engineering
+```
 
-1. [Unified Architecture](docs/ARCHITECTURE.md)
-2. [Operating Model v1](docs/OPERATING_MODEL_V1.md)
-3. [Runtime Model](docs/RUNTIME_MODEL.md)
-4. [Context Engine](docs/CONTEXT_ENGINE.md)
-5. [Evidence & Assurance](docs/EVIDENCE_ASSURANCE.md)
-6. [Cognitive Architecture](docs/COGNITIVE_ARCHITECTURE.md)
-7. [Migration & Lineage](docs/MIGRATION_AND_LINEAGE.md)
-8. [Adoption Guide](docs/ADOPTION_GUIDE.md)
+---
 
-## Validation
+## Repository structure
+
+```text
+sara-agentic-os-public/
+│
+├── AGENTS.md
+├── README.md
+├── LICENSE
+├── CHANGELOG.md
+│
+├── sara/
+│   └── manifest.json
+│
+├── runtime/
+│   ├── agents/
+│   └── skills/
+│
+├── docs/
+│   ├── ARCHITECTURE.md
+│   ├── OPERATING_MODEL.md
+│   ├── RUNTIME_MODEL.md
+│   ├── CONTEXT_ENGINE.md
+│   ├── COGNITIVE_ARCHITECTURE.md
+│   ├── EVIDENCE_ASSURANCE.md
+│   ├── ADOPTION_GUIDE.md
+│   └── ROADMAP.md
+│
+├── templates/
+├── examples/
+│   └── v2-minimal/
+└── scripts/
+    └── validate_baseline.py
+```
+
+---
+
+## Quick start
+
+1. Copy `PROJECT_CURRENT_STATE.template.md` and `GATES.template.md` into your project state area.
+2. Define the real outcome with `OBJECTIVE_CONTRACT.template.yaml`.
+3. Bound material work with `WORK_ITEM.template.yaml`.
+4. Route only the capabilities the task actually needs.
+5. Execute inside explicit ownership.
+6. Validate with evidence.
+7. Add independent review when material.
+8. Close with `EXECUTION_RESULT.template.md` and `OUTCOME.template.yaml`.
+9. Reconcile State & Gates.
+
+See [Adoption Guide](docs/ADOPTION_GUIDE.md).
+
+---
+
+## Core rules
+
+### Authority before capability
+A model, agent, credential, available tool, or write permission never creates authority by itself.
+
+### Context is evidence, not truth
+Retrieved context can support a decision. It cannot silently become product intent, approval, or accepted project state.
+
+### "Done" is a state transition
+A task is not complete because an agent says so. Material completion requires the applicable acceptance evidence, exact candidate identity, review state, and human gate.
+
+### Independent review stays independent
+The implementer is not the sole final reviewer of a material protected change.
+
+### Parallel work requires isolation
+Parallel lanes need explicit ownership. Shared state, migrations, schemas, configuration, and protected state are serialized unless ownership and merge order are defined.
+
+### Recovery exists before risky change
+Stateful or hard-to-reverse changes require a rollback or recovery path before authorization.
+
+---
+
+## Protected human gates
+
+Explicit human authorization is required for:
+
+- production release;
+- destructive or privileged actions;
+- credential or secret changes;
+- material data migration;
+- security-risk acceptance;
+- external financial or communication commitments;
+- changes to Sara's own governance or runtime baseline.
+
+---
+
+## Model-agnostic by design
+
+Sara keeps the reasoning engine replaceable.
+
+The durable assets are:
+
+```text
+objective
++ project state
++ work contracts
++ agent responsibilities
++ skills
++ evidence
++ outcomes
++ learning history
+```
+
+The model is an execution resource, not the source of truth.
+
+---
+
+## Validate the distribution
 
 ```bash
 python scripts/validate_baseline.py
 ```
 
-The public CI is intentionally read-only. It validates structure; it does not merge, deploy, publish secrets, or invoke AI agents.
+---
 
-## Licensing
+## Documentation
 
-Sara-authored documentation, templates, Agent contracts, Skill contracts, and configuration examples remain under **CC BY-NC 4.0** unless a file says otherwise.
+| Document | Purpose |
+|---|---|
+| [Architecture](docs/ARCHITECTURE.md) | Planes, boundaries, control flow |
+| [Operating Model](docs/OPERATING_MODEL.md) | End-to-end work lifecycle |
+| [Runtime Model](docs/RUNTIME_MODEL.md) | Agent/Skill design and routing |
+| [Context Engine](docs/CONTEXT_ENGINE.md) | Context composition and memory boundary |
+| [Cognitive Architecture](docs/COGNITIVE_ARCHITECTURE.md) | Experience, outcome and learning model |
+| [Evidence & Assurance](docs/EVIDENCE_ASSURANCE.md) | Verification, independent review, rollback |
+| [Adoption Guide](docs/ADOPTION_GUIDE.md) | Minimal-to-advanced adoption |
+| [Roadmap](docs/ROADMAP.md) | Evidence-driven next stages |
 
-Third-party software such as NeuroMesh remains under its own upstream license. Sara integrates it; this repository does not relicense it. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+---
+
+## License
+
+Sara Agentic OS is released under the **MIT License**.
+
+Use it, modify it, fork it, ship it, integrate it, and build on it. The MIT copyright and permission notice must be preserved.
+
+See [LICENSE](LICENSE).
+
+---
+
+<div align="center">
+
+### SARA v2.0.0
+
+**Govern the work. Route the right capability. Keep context small. Prove the outcome.**
+
+</div>
