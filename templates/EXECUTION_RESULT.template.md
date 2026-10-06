@@ -1,103 +1,30 @@
-# Execution Result — <PACKET NAME>
+# Execution Result
 
-Packet ID:
-Execution agent:
-Date:
-Branch:
-PR:
-Commit(s):
+## Identity
+- Work item:
+- Branch:
+- Candidate commit:
+- Pull request:
+- Runtime/model (if relevant):
 
----
+## Scope completed
 
-## Verdict claimed by execution agent
+## Files/surfaces changed
 
-DONE / PARTIAL / BLOCKED
+## Validation
 
-> The execution agent may claim a status, but final acceptance requires reviewer verdict.
+## Acceptance criteria
 
----
+## Independent/security review
 
-## Summary
-
-Briefly summarize what changed.
-
-- 
-- 
-
----
-
-## Touched files
-
-| File | Change summary |
-|---|---|
-| | |
-
----
-
-## Acceptance criteria status
-
-| Criterion | Status | Evidence |
-|---|---|---|
-| | Pass / Fail / Not checked | |
-
----
-
-## Validation performed
-
-| Validation | Result | Evidence / command |
-|---|---|---|
-| Tests | Pass / Fail / Not run | |
-| Lint/typecheck | Pass / Fail / Not run | |
-| Build | Pass / Fail / Not run | |
-| Migration check | Pass / Fail / Not applicable | |
-| Manual verification | Pass / Fail / Not run | |
-
----
+## Risks and residual gaps
 
 ## What was not done
 
-List anything intentionally not done or left out.
+## Rollback/recovery
 
-- 
-- 
+## Verdict
 
----
+`PASS / PARTIAL / FAIL / BLOCKED`
 
-## Risks / concerns
-
-- 
-- 
-
----
-
-## Required human gate
-
-Does this need human approval before merge/deploy/closeout?
-
-Yes / No
-
-Details:
-
-- 
-
----
-
-## Follow-up recommended
-
-- 
-- 
-
----
-
-## Final reviewer verdict
-
-To be filled by reviewer:
-
-```text
-Verdict: DONE / PARTIAL / BLOCKED / WRONG DIRECTION
-Reason:
-Gate:
-Risks:
-Next action:
-Human needed: yes/no
-```
+## Next gate
