@@ -1,0 +1,114 @@
+{
+  "schemaVersion": "2.0",
+  "version": "2.0.0",
+  "name": "Sara Agentic OS",
+  "productType": "agentic-engineering-operating-system",
+  "status": "stable",
+  "license": "MIT",
+  "principles": [
+    "one-authority-per-concern",
+    "smallest-sufficient-routing",
+    "human-authority-for-protected-actions",
+    "context-is-evidence-not-authority",
+    "exact-candidate-evidence",
+    "reversible-before-irreversible",
+    "model-agnostic",
+    "repository-native"
+  ],
+  "authority": {
+    "manifest": "sara/manifest.json",
+    "bootstrap": "AGENTS.md",
+    "architecture": "docs/ARCHITECTURE.md",
+    "operatingModel": "docs/OPERATING_MODEL.md",
+    "runtimeModel": "docs/RUNTIME_MODEL.md",
+    "contextModel": "docs/CONTEXT_ENGINE.md",
+    "cognitiveModel": "docs/COGNITIVE_ARCHITECTURE.md",
+    "assuranceModel": "docs/EVIDENCE_ASSURANCE.md"
+  },
+  "planes": {
+    "governanceDelivery": {
+      "owns": [
+        "objective",
+        "work-authorization",
+        "state",
+        "gates",
+        "change-lifecycle",
+        "result",
+        "closeout"
+      ]
+    },
+    "contextCognition": {
+      "owns": [
+        "task-context",
+        "evidence-selection",
+        "memory-boundary",
+        "experience",
+        "outcome",
+        "learning-candidates"
+      ]
+    },
+    "runtimeCapability": {
+      "owns": [
+        "agent-catalog",
+        "skill-catalog",
+        "routing-primitives",
+        "action-boundaries"
+      ]
+    },
+    "evidenceAssurance": {
+      "owns": [
+        "validation",
+        "independent-review",
+        "candidate-identity",
+        "rollback",
+        "recovery"
+      ]
+    }
+  },
+  "agents": [
+    "product-lead",
+    "product-design-lead",
+    "software-architect",
+    "workflow-architect",
+    "frontend-engineer",
+    "backend-integration-engineer",
+    "mobile-application-engineer",
+    "quality-test-engineer",
+    "independent-code-reviewer",
+    "security-architect",
+    "appsec-code-auditor",
+    "release-engineer"
+  ],
+  "skills": [
+    "team-orchestrator",
+    "repo-discovery",
+    "delivery-planning",
+    "incident-response",
+    "prompt-engineering",
+    "workflow-review",
+    "workflow-design",
+    "controlled-change",
+    "workflow-validation",
+    "test-evidence",
+    "api-testing",
+    "test-automation",
+    "tool-evaluation",
+    "mobile-application-delivery",
+    "mobile-store-release",
+    "app-store-optimization"
+  ],
+  "routing": {
+    "simpleWork": "direct",
+    "materialWork": "smallest-sufficient-capability-set",
+    "implementerCannotSolelyApproveMaterialWork": true
+  },
+  "protectedHumanGates": [
+    "production-release",
+    "destructive-or-privileged-action",
+    "credential-or-secret-change",
+    "material-data-migration",
+    "security-risk-acceptance",
+    "external-financial-or-communication-commitment",
+    "governance-or-runtime-baseline-change"
+  ]
+}

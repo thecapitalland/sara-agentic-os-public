@@ -1,0 +1,24 @@
+work_item:
+  id: ""
+  objective_ref: ""
+  repository: ""
+  source_commit: ""
+  status: "READY"
+  outcome: ""
+  scope: []
+  non_goals: []
+  risk: "low|medium|high|critical"
+  protected_domains: []
+  current_owner_lane: ""
+  allowed_write_scope: []
+  forbidden_scope: []
+  dependencies: []
+  assumptions: []
+  unknowns: []
+  required_agents: []
+  required_skills: []
+  required_gates: []
+  acceptance_criteria: []
+  evidence_required: []
+  rollback_or_recovery: ""
+  stop_conditions: []

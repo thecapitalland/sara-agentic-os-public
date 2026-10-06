@@ -1,0 +1,16 @@
+objective:
+  problem: ""
+  desired_outcome: ""
+  users_or_stakeholders: []
+  value_metric: ""
+  why_now: ""
+  constraints: []
+  non_goals: []
+  assumptions: []
+  evidence_needed: []
+  build_buy_reuse_options: []
+  major_risks: []
+  kill_or_stop_conditions: []
+  recommendation: "build|buy|configure|reuse|explore|defer|stop"
+  confidence: "high|medium|low"
+  owner_decision_required: ""

@@ -1,37 +1,38 @@
-## Problem
+## Outcome
 
-What problem does this PR solve?
+What real problem does this change solve?
 
 -
 
 ## Proposed change
 
-What did you change?
+-
+
+## Owning plane
+
+- [ ] Governance & Delivery
+- [ ] Context & Cognition
+- [ ] Runtime & Capability
+- [ ] Evidence & Assurance
+
+## Scope / non-goals
 
 -
 
-## Scope check
+## Authority check
 
-Does this stay within Sara's operating-model scope?
-
-- [ ] Yes, this is documentation/template/workflow-model improvement only.
-- [ ] No new runtime, service, dashboard, bot, or uncontrolled automation is introduced.
+- [ ] No competing source of truth is introduced.
 - [ ] Human gates are preserved.
-
-## Files changed
-
--
-
-## Risks / tradeoffs
-
--
+- [ ] No hidden scope expansion is introduced.
 
 ## Validation
 
-- [ ] I reviewed the rendered Markdown.
-- [ ] I checked links and paths.
-- [ ] I removed project-specific or non-sanitized details.
+-
 
-## Notes for reviewer
+## Security / privacy / compatibility
+
+-
+
+## Reviewer focus
 
 -

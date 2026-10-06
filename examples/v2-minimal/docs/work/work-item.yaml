@@ -1,0 +1,19 @@
+work_item:
+  id: "1"
+  objective_ref: "docs/work/objective.yaml"
+  status: "READY"
+  outcome: "Implement the accepted bounded fix."
+  scope: ["one named workflow"]
+  non_goals: ["unrelated refactor"]
+  risk: "low"
+  protected_domains: []
+  owner_lane: "implementation"
+  allowed_write_scope: ["src/relevant/**", "tests/relevant/**", "docs/work/RESULT.md"]
+  forbidden_scope: ["deployment/**", "security-sensitive/**"]
+  dependencies: []
+  required_capabilities: ["implementation", "focused-validation"]
+  required_gates: ["UAT"]
+  acceptance_criteria: ["target scenario passes", "focused regression tests pass"]
+  evidence_required: ["test result", "candidate identity"]
+  rollback_or_recovery: "revert the candidate change"
+  stop_conditions: ["scope expands", "protected domain becomes involved"]
